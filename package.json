@@ -1,0 +1,18 @@
+{
+  "name": "pagarme-bad-code",
+  "version": "1.0.0",
+  "description": "Example of a really bad code",
+  "main": "idnex.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "*",
+    "request": "^2.73.0",
+    "request-promise": "^4.0.0",
+    "sqlite3": "^3.1.4"
+  }
+}
