@@ -1,0 +1,4 @@
+CREATE TABLE pokemon (
+name varchar(80) UNIQUE NOT NULL,
+price int NOT NULL,
+stock int DEFAULT 1 );

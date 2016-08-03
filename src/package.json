@@ -1,0 +1,27 @@
+{
+  "name": "pokemons",
+  "version": "1.0.0",
+  "description": "pokemons",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "pokemons"
+  ],
+  "author": "Jorge Feldmann",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "bunyan": "1.8.0",
+    "express": "4.13.4",
+    "sequelize": "3.x",
+    "request": "^2.73.0",
+    "request-promise": "^4.0.0",
+    "sqlite3": "^3.1.4"
+  },
+  "engines": {
+    "node": "6.x",
+    "npm": "3.x"
+  }
+}
