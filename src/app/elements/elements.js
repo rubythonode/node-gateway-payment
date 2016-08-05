@@ -1,6 +1,6 @@
 'use strict';
 
-
+let model = require ( './model' );
 
 function Elements () {
 	
@@ -8,8 +8,7 @@ function Elements () {
 
 	_public.getAll = ( req , res ) => {
 
-		let model = require ( './model' ).connect (
-			(model) => { model
+	model
 		.findAll()
 		.then ( ( elements ) => {
 			res.status ( 200 ) .send ( elements );
@@ -19,10 +18,6 @@ function Elements () {
 			return res.status ( err.response.statusCode ).send ( err.response.body );
 		})
 	;
-		); }
-
-
-	
 
 		
 	};

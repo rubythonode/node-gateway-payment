@@ -11,21 +11,19 @@ function ModelFactory ( stringEntityName , fnGenerateEntityProperties ) {
 		model = dbConnection.define ( stringEntityName , fnGenerateEntityProperties ( global.dbDriver ) );
 	}
 
-	function connect ( fnCallbackSuccess ) {
+	function connect () {
 		model.sync ( { force : true } ).then ( function () {
-			fnCallbackSuccess();
 			log.info ( 'Model is ready!' );
 		});
 	}
 
 	function makePublic () {
-		_public = {
-			connect
-		};
+		_public = model;
 	}
 
 	function init () {
 		defineModel();
+		connect();
 		makePublic();
 	}
 
