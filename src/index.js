@@ -30,12 +30,16 @@ let
 	dependenciesRequirer,
 	// Easy wrapper to get the libs, without passing the path
 	getCommon,
-	// Easy wrapper to get dependencies, withou passing the path
+	// Easy wrapper to get dependencies, without passing the path
 	getDependency,
 	// Component to read the routes
 	routeReader,
 	// Component to parse the HTTP body requisition
-	HTTPBodyParser
+	HTTPBodyParser,
+	// DataBase driver
+	dbDriver,
+	// DataBase connection
+	dbConnection
 ;
 
 const
@@ -62,8 +66,9 @@ function stepLoadNodeArguments () {
 function stepSetDependencies () {
 
 	express = require ( 'express' );
-	HTTPBodyParser = require ( 'body-parser' )
-	app = express ();
+	HTTPBodyParser = require ( 'body-parser' );
+	dbDriver = require ( 'sequelize' );
+	global.dbDriver = dbDriver;
 
 	// Setting configurations
 	config = require ( configPath ) ();
@@ -107,8 +112,11 @@ function stepSetDependencies () {
  * stepConfigServer - The step to set container configs
  */
 function stepConfigServer () {
+
+	app = express ();
+
 	// Allowing CORS for communication
-	app.use ( ( req, res, next ) => {
+	app.use ( ( req , res , next ) => {
 		res.header ( "Access-Control-Allow-Origin", "*" );
 		res.header ( "Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept" );
 		res.header ( "Access-Control-Allow-Methods", "GET,PUT,POST,DELETE" );
@@ -120,6 +128,17 @@ function stepConfigServer () {
 	}));
 
 	app.use ( HTTPBodyParser.json () );
+}
+
+function stepConnectToMainDataBase () {
+	dbConnection = new dbDriver (
+		'elements',
+		null,
+		null, {
+			dialect: 'sqlite'
+		})
+	;
+	global.dbConnection = dbConnection;
 }
 
 /**
@@ -173,6 +192,7 @@ function init () {
 	stepLoadNodeArguments ();
 	stepSetDependencies ();
 	stepConfigServer ();
+	stepConnectToMainDataBase();
 	stepReadRoutes ();
 	stepStartServer ();
 }

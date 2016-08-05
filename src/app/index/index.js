@@ -9,13 +9,19 @@ function listRoutes ( req , res ) {
 	let index = [];
 
 	actualRoutes = config.loadedRoutes.map ( route => {
-		return ( '[' + route.method.toUpperCase() + '] <strong>' + route.path + '</strong>' );
+		return (
+			'['
+			+ route.method.toUpperCase()
+			+ '] <strong>'
+			+ route.path
+			+ '</strong>'
+		);
 	});
 
 	index = ( info.concat ( actualRoutes ) ).join ( divider );
 
 	// Devolvendo as rotas existentes
-	res.send ( index );
+	res.status ( 200 ).send ( index );
 }
 
 function makePublic () {
