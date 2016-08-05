@@ -13,7 +13,7 @@ function ModelFactory ( stringEntityName , fnGenerateEntityProperties ) {
 
 	function connect () {
 		model.sync ( { force : true } ).then ( function () {
-			log.info ( 'Model is ready!' );
+			log.info ( `Model [${stringEntityName}]  is ready!` );
 		});
 	}
 
