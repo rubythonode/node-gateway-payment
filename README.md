@@ -34,7 +34,7 @@ pm2 -v
 ### Instalação do projeto
 
 ```bash
-git clone https://bitbucket.org/jotafeldmann/pagarme
+git clone https://github.com/jotafeldmann/pagarme
 cd pagarme/src
 npm install
 ```
@@ -109,7 +109,7 @@ npm test
 
 ## Estudo do código
 
-Seguir os comentários no arquivo [pagarme/src/index.js](https://bitbucket.org/jotafeldmann/pagarme/src/d27d175efe8a858ce8c6af5a0b7b10482e27a75f/src/index.js?at=master&fileviewer=file-view-default)
+Seguir os comentários no arquivo [pagarme/src/index.js](https://github.com/jotafeldmann/pagarme/blob/master/src/index.js)
 
 ## Licença
 
