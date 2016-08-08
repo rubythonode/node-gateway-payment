@@ -13,13 +13,15 @@ Não fique preso a apenas refatorar o código, altere o que achar necessário pa
 ### Instalação do Node.js 6.0.0 e do NPM
 
 - Node.js versão 6.0.0
-- Instruções de instalação para Ubuntu [neste link](https://nodejs.org/en/download/package-manager/#debian-and-ubuntu-based-linux-distributions)
+- Instruções de instalação [neste link](https://nodejs.org/en/download/package-manager)
 - Ao final, verificar a versão de ambos para confirmar:
 
 ```bash
 node -v
 npm -v
 ```
+
+- Recomenda-se o uso de [NVM](https://github.com/creationix/nvm) para versionar diferentes versões do Node.js
 
 ### Dependências
 
@@ -39,6 +41,12 @@ npm install
 
 ## Inicializando a aplicação
 
+Acessar a pasta com o código:
+
+```bash
+cd pagarme/src
+```
+
 ### Iniciar a aplicação para PROD
 
 Inicializa o PM2, com a aplicação como serviço, utilizando o máximo de núcleos disponíveis, observando mudanças e atualizando, reiniciando caso ocorram falhas
@@ -51,7 +59,6 @@ npm start
 ### Parar a aplicação
 
 ```bash
-cd pagarme/src
 npm stop
 ```
 
@@ -60,30 +67,43 @@ npm stop
 Inicializa o PM2, com a aplicação como serviço, utilizando 1 núcleo, observando mudanças, parando a cada falha e lançando o log após a inicialização
 
 ```bash
-cd pagarme/src
 npm run dev
 ```
 
 ### Logs da aplicação
 
 ```bash
-cd pagarme/src
 npm run logs
 ```
 
 ## Testes
 
-### Instalação dos testes
+Acessar a pasta com os testes:
 
 ```bash
 cd pagarme/testes
+```
+
+### Instalação dos testes e dependências
+
+- Instalação global do Mocha
+
+```bash
+npm install -g mocha
+mocha --version
+```
+
+- Instalação das dependências locais dos testes
+
+```bash
+cd funcionais
 npm install
 ```
 
 ### Iniciar os testes
 
 ```bash
-cd pagarme/testes
+cd pagarme/src
 npm test
 ```
 
