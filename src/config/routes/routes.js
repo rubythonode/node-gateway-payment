@@ -16,6 +16,7 @@ let helper = new require ( './routes_helper' )( routes );
 function loadRoutes () {
 	helper.generateRoute ( 'index' , 'get' , 'getAll' );
 	helper.generateRoute ( 'elements' , 'get' , 'getAll' , 'elements' );
+	helper.generateRoute ( 'elements' , 'post' , 'createOne' , 'elements' );
 }
 
 function getRoutes () {
