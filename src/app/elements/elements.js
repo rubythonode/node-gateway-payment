@@ -2,21 +2,7 @@
 
 let model = require ( './model' );
 let pagarme = getCommon ( 'pagarme' );
-
-function sendResponse ( objResponseObject , message , intStatusCode = 200 ) {
-	return objResponseObject.status ( intStatusCode ).send ( message );
-}
-
-function sendErrorResponse ( objResponseObject , message , intStatusCode = 500 ) {
-	log.info ( JSON.stringify ( message , null , 4 ) );
-	return sendResponse ( objResponseObject , message , intStatusCode );
-}
-
-function handleGenericError ( objResponseObject ) {
-	return ( err ) => {
-		return sendErrorResponse ( objResponseObject , err.response.body , err.response.statusCode );
-	}
-}
+let requestUtils = getCommon ( 'request-utils' );
 
 function Elements () {
 	
@@ -26,8 +12,8 @@ function Elements () {
 
 		model
 			.findAll()
-			.then ( ( element ) => sendResponse ( res , element ) )
-			.catch ( handleGenericError ( res ) )
+			.then ( ( element ) => requestUtils.sendResponse ( res , element ) )
+			.catch ( requestUtils.handleGenericError ( res ) )
 		;
 		
 	};
@@ -36,8 +22,8 @@ function Elements () {
 
 		model
 			.create ( req.body )
-			.then ( ( element ) => sendResponse ( res , element ) )
-			.catch ( handleGenericError ( res ) )
+			.then ( ( element ) => requestUtils.sendResponse ( res , element ) )
+			.catch ( requestUtils.handleGenericError ( res ) )
 		;
 
 	};
@@ -51,49 +37,47 @@ function Elements () {
 			cvv : '123'
 		};
 
+		let product = {
+			name : req.body.name,
+			quantity : req.body.quantity
+		};
+
 		model
 			.findOne({
 				where : {
-					name: req.body.name
+					name: product.name
 				}
 			})
 			.then ( ( element ) => {
-				if ( element.stock < req.body.quantity ) {
-					return sendResponse ( res , {
-						error: 'Not enough ' + element.name + ' in stock: ' + element.stock
+				if ( !model.theresStock ( element , product.quantity ) ) {
+					return requestUtils.sendResponse ( res , {
+						error :
+							'Not enough ' +
+							product.name +
+							' in stock: ' +
+							element.stock
 					} , 400 );
 				}
 				pagarme
 					.pay ({
-						product: 'pokemon',
+						product: model.name,
 						price : element.price,
-						quantity : req.body.quantity,
-						name : element.name,	
+						quantity : product.quantity,
+						name : product.name,	
 						card : paymentData
 					})
 					.then ( ( body ) => {
-						if ( body.status == 'paid' ) {
-
-							element.stock = element.stock - req.body.quantity;
-							
-							element
-								.save()
-								.then ( ( element ) => {
-									return sendResponse ( res , body );
-								})
-							;
+						if ( pagarme.isPaid ( body ) ) {
+							model.removeFromStock ( element , product.quantity )
+							.then ( ( element ) => requestUtils.sendResponse ( res , body )
+							);
 						}
 					})
-					.catch ( handleGenericError ( res ) )
+					.catch ( requestUtils.handleGenericError ( res ) )
 				;	
 
 			})
-			.catch ( ( err ) => {
-				return sendErrorResponse ( res , {
-					message : 'Houve um erro no servidor',
-					error : err }
-				);
-			})
+			.catch ( requestUtils.handleGenericError ( res ) )
 		;	
 
 	};

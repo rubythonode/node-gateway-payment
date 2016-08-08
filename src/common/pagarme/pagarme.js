@@ -39,6 +39,10 @@ function Pagarme () {
 		});
 	};
 
+	_public.isPaid = ( objPagarmeResponse ) => {
+		return objPagarmeResponse.status === 'paid';
+	};
+
 	return _public;
 }
 
