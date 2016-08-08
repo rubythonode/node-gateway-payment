@@ -33,12 +33,13 @@ var config = {
 	resources : {
 		defaultVersion : 'v1'
 	},
-	urls: {
-		services: {
-			protocol: 'http',			
-			env: 'AWS',
-			url: 'aws.amazon.com',
-			port: 80
+	services : {
+		pagarme : {
+			protocol: 'https',			
+			env : 'Pagar.me',
+			url : 'api.pagar.me/1/transactions',
+			port : 80,
+			apiKey : 'ak_test_WHgSu2XFmvoopAZMetV3LfA2RfEEQg'
 		}
 	}
 };
