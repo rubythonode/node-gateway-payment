@@ -1,11 +1,12 @@
 # GATEWAY - Testes
 
-Os testes são efetuados para o Gateway rodando em *config.js*.
-Resultados dependem dos recursos de SOA funcionando na TIVIT (e sem alteração).
+Os testes são efetuados para a aplicação rodando em *config.js*.
+Resultados dependem dos recursos da Pagar.me
+
 
 ## Instalação do ambiente
 
-- Node.js versão 6.0.0
+- Node.js versão 6.x
 - Mocha
 - Supertest
 - Superagent
@@ -18,10 +19,19 @@ npm install
 
 ## Como usar
 
-- Acessar a pasta do projeto
+- Acessar a pasta SRC do projeto
 - Rodar o Script
 
 ```bash
-cd funcionais
-. start.sh
+npm test
 ```
+
+ou
+
+- Acessar a pasta dos testes do projeto
+- Rodar o Script
+
+```bash
+npm start
+```
+
