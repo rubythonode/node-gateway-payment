@@ -1,7 +1,7 @@
 'use strict';
 
 // Index da API
-function listRoutes ( req , res ) {
+function listResources ( req , res ) {
 	
 	let divider = '<br/>';
 	let info = [];
@@ -25,7 +25,7 @@ function listRoutes ( req , res ) {
 }
 
 function makePublic () {
-	module.exports = exports = { getAll : listRoutes };
+	module.exports = exports = { getAll : listResources };
 }	
 
 function init () {

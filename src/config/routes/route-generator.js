@@ -1,6 +1,15 @@
-function RoutesHelper ( objRouteObj ) {
+function RouteGenerator ( objRouteObj ) {
 
 	let _public = {};
+
+	// Padrão para criação de rotas
+	// {
+	// 		nomedarota : {
+	// 			path : 'nomedarota', // /nomedarota (a ser respondida no HTTP)
+	// 			handler : 'onde_está_o_handler_da_rota' // controllers.nomedarota, interpretado no index.js
+	// 			// (nomedarota deve ser uma pasta dentro da pasta app)
+	// 		}
+	// }
 
 	let routes = objRouteObj || [];
 
@@ -16,14 +25,14 @@ function RoutesHelper ( objRouteObj ) {
 	}
 
 	// Gera um rota diretamente a partir da raiz, sem padrão
-	function generateRoute ( strRouteName , strMethod , strHandlerMethod , strPath ) {
+	function generate ( strRouteName , strMethod , strHandlerMethod , strPath ) {
 		strPath = '/' + ( strPath ? strPath : '' );
 		return RouteFactory ( strRouteName , strMethod , strHandlerMethod , strPath );
 	}
 
 	function makePublic () {
 		_public = {
-			generateRoute
+			generate
 		};
 	}
 
@@ -37,7 +46,7 @@ function RoutesHelper ( objRouteObj ) {
 }
 
 function makePublic () {
-	module.exports = exports = RoutesHelper;
+	module.exports = exports = RouteGenerator;
 }	
 
 function init () {
