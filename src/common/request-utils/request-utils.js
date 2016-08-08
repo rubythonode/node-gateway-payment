@@ -15,7 +15,7 @@ function handleGenericError ( objResponseObject ) {
 		let statusCode = 500;
 		if ( err.response ) {
 			message = err.response.body;
-			statusCode = err.response.statusCode || 500;
+			statusCode = err.response.statusCode;
 		}
 		return sendErrorResponse ( objResponseObject , message , statusCode );
 	}

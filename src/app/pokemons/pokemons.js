@@ -42,51 +42,58 @@ function Pokemons () {
 			quantity : req.body.quantity
 		};
 
-		model
-			.findOne({
-				where : {
-					name: product.name
-				}
-			})
-			.then ( ( pokemons ) => {
-				if ( !model.theresStock ( pokemons , product.quantity ) ) {
-					return requestUtils.sendResponse ( res , {
-						error :
-							'Not enough ' +
-							product.name +
-							' in stock: ' +
-							pokemons.stock
-					} , 400 );
-				}
-				pagarme
-					.pay ({
-						product: model.name,
-						price : pokemons.price,
-						quantity : product.quantity,
-						name : product.name,	
-						card : paymentData
-					})
-					.then ( ( body ) => {
-						if ( pagarme.isPaid ( body ) ) {
-							model.removeFromStock ( pokemons , product.quantity )
-							.then ( ( pokemons ) => requestUtils.sendResponse ( res , body )
-							);
-						}
-					})
-					.catch ( ( err ) => requestUtils.sendResponse ( res , {
-						error :
-							'Payment not aproved'
-					} , 400 ) )
-				;	
+		function stepRemoveFromStock ( objResponse , objInstance , objResponseBody ) {
+			if ( pagarme.isApproved ( objResponseBody ) ) {
+				model
+					.removeFromStock ( objInstance , product.quantity )
+					.then ( ( objInstance ) => requestUtils.sendResponse ( objResponse , objResponseBody ) )
+					.catch ( requestUtils.handleGenericError ( objResponse ) )
+				;
+			}
+		}
 
-			})
-			.catch ( ( err ) => requestUtils.sendResponse ( res , {
-				error :
-					'Not found ' +
-					product.name +
-					' in stock'
-			} , 404 ) )
-		;	
+		function stepSendPaymentToPagarme ( objResponse , objInstance ) {
+
+			pagarme
+				.pay ({
+					product: model.name,
+					price : objInstance.price,
+					quantity : product.quantity,
+					name : product.name,	
+					card : paymentData
+				})
+				.then ( ( body ) => stepRemoveFromStock ( objResponse , objInstance , body ))
+				.catch ( ( err ) => requestUtils.sendResponse ( objResponse , {
+					error : 'Payment not approved'
+				} , 400 ) )
+			;
+
+		}
+
+		function stepVerifyStock ( objResponse , objInstance ) {
+			if ( !model.theresStock ( objInstance , product.quantity ) ) {
+				return requestUtils.sendResponse ( objResponse , {
+					error :	`Not enough ${product.name} in stock: ${objInstance.stock}`
+				} , 400 );
+			}
+			return stepSendPaymentToPagarme ( res , objInstance );
+		}
+
+		function stepFindProduct () {
+			model
+				.findOne( { where : { name: product.name } } )
+				.then ( ( pokemons ) => stepVerifyStock ( res , pokemons ) )
+				.catch ( ( err ) => requestUtils.sendResponse ( res , {
+					error : `Not found ${product.name} in stock`
+				} , 404 ) )
+			;
+		}
+
+		function init () {
+			stepFindProduct();
+		}
+
+		init ();
 
 	};
 

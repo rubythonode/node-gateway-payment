@@ -4,8 +4,9 @@
   "description": "pokemons",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "cd ../testes/funcionais && npm start"
+    "start" : "pm2 start -f -i 1 index.js && pm2 logs index",
+    "test" : "cd ../testes/funcionais && npm start",
+    "stop" : "pm2 delete index"
   },
   "keywords": [
     "pokemons"
