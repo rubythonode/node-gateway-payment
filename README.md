@@ -52,6 +52,7 @@ cd pagarme/src
 Inicializa o PM2, com a aplicação como serviço, utilizando o máximo de núcleos disponíveis, observando mudanças e atualizando, reiniciando caso ocorram falhas
 
 ```bash
+export NODE_ENV=production
 cd pagarme/src
 npm start
 ```
