@@ -36,6 +36,12 @@ function Elements () {
 
 	}
 
+	_public.buyOne = ( req , res ) => {
+
+		
+		
+	}
+
 	return _public;
 }
 
