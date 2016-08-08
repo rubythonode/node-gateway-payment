@@ -10,7 +10,7 @@ enums.httpStatusCode = {
 	'SERVER_ERROR' : 500
 };
 
-function sendResponse ( objResponseObject , message , intStatusCode = 200 ) {
+function sendResponse ( objResponseObject , message , intStatusCode = enums.httpStatusCode [ 'SUCCESS' ] ) {
 	return objResponseObject.status ( intStatusCode ).send ( message );
 }
 
