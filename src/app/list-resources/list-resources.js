@@ -1,5 +1,7 @@
 'use strict';
 
+let requestUtils = getCommon ( 'request-utils' );
+
 // Index da API
 function listResources ( req , res ) {
 	
@@ -21,7 +23,7 @@ function listResources ( req , res ) {
 	index = ( info.concat ( actualRoutes ) ).join ( divider );
 
 	// Devolvendo as rotas existentes
-	res.status ( 200 ).send ( index );
+	requestUtils.sendResponse ( res , index );
 }
 
 function makePublic () {
