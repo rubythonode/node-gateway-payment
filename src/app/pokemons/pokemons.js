@@ -4,7 +4,7 @@ let model = require ( './model' );
 let pagarme = getCommon ( 'pagarme' );
 let requestUtils = getCommon ( 'request-utils' );
 
-function Elements () {
+function Pokemons () {
 	
 	let _public = {};
 
@@ -12,7 +12,7 @@ function Elements () {
 
 		model
 			.findAll()
-			.then ( ( element ) => requestUtils.sendResponse ( res , element ) )
+			.then ( ( pokemons ) => requestUtils.sendResponse ( res , pokemons ) )
 			.catch ( requestUtils.handleGenericError ( res ) )
 		;
 		
@@ -22,7 +22,7 @@ function Elements () {
 
 		model
 			.create ( req.body )
-			.then ( ( element ) => requestUtils.sendResponse ( res , element ) )
+			.then ( ( pokemons ) => requestUtils.sendResponse ( res , pokemons ) )
 			.catch ( requestUtils.handleGenericError ( res ) )
 		;
 
@@ -48,28 +48,28 @@ function Elements () {
 					name: product.name
 				}
 			})
-			.then ( ( element ) => {
-				if ( !model.theresStock ( element , product.quantity ) ) {
+			.then ( ( pokemons ) => {
+				if ( !model.theresStock ( pokemons , product.quantity ) ) {
 					return requestUtils.sendResponse ( res , {
 						error :
 							'Not enough ' +
 							product.name +
 							' in stock: ' +
-							element.stock
+							pokemons.stock
 					} , 400 );
 				}
 				pagarme
 					.pay ({
 						product: model.name,
-						price : element.price,
+						price : pokemons.price,
 						quantity : product.quantity,
 						name : product.name,	
 						card : paymentData
 					})
 					.then ( ( body ) => {
 						if ( pagarme.isPaid ( body ) ) {
-							model.removeFromStock ( element , product.quantity )
-							.then ( ( element ) => requestUtils.sendResponse ( res , body )
+							model.removeFromStock ( pokemons , product.quantity )
+							.then ( ( pokemons ) => requestUtils.sendResponse ( res , body )
 							);
 						}
 					})
@@ -86,7 +86,7 @@ function Elements () {
 }
 
 function makePublic () {
-	module.exports = new Elements();
+	module.exports = new Pokemons();
 }
 
 function init () {
