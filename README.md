@@ -1,4 +1,4 @@
-# Pagar.me
+# Pagar.me <img src="https://travis-ci.org/jotafeldmann/pagarme.svg">
 
 Refactoring de código para utilizar a [API](https://docs.pagar.me/) da Pagar.me
 
