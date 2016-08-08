@@ -8,7 +8,7 @@ function listResources ( req , res ) {
 	let actualRoutes = [];
 	let index = [];
 
-	actualRoutes = config.loadedRoutes.map ( route => {
+	actualRoutes = global.config.loadedRoutes.map ( route => {
 		return (
 			'['
 			+ route.method.toUpperCase()
