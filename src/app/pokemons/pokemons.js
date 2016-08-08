@@ -65,7 +65,7 @@ function Pokemons () {
 				.then ( ( body ) => stepRemoveFromStock ( objResponse , objInstance , body ))
 				.catch ( ( err ) => requestUtils.sendResponse ( objResponse , {
 					error : 'Payment not approved'
-				} , 400 ) )
+				} , requestUtils.enums.httpStatusCode [ 'REQUEST_ERROR' ] ) )
 			;
 
 		}
@@ -74,7 +74,7 @@ function Pokemons () {
 			if ( !model.theresStock ( objInstance , product.quantity ) ) {
 				return requestUtils.sendResponse ( objResponse , {
 					error :	`Not enough ${product.name} in stock: ${objInstance.stock}`
-				} , 400 );
+				} , requestUtils.enums.httpStatusCode [ 'REQUEST_ERROR' ] );
 			}
 			return stepSendPaymentToPagarme ( res , objInstance );
 		}
@@ -85,7 +85,7 @@ function Pokemons () {
 				.then ( ( pokemons ) => stepVerifyStock ( res , pokemons ) )
 				.catch ( ( err ) => requestUtils.sendResponse ( res , {
 					error : `Not found ${product.name} in stock`
-				} , 404 ) )
+				} , requestUtils.enums.httpStatusCode [ 'NOT_FOUND' ] ) )
 			;
 		}
 

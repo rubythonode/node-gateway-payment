@@ -1,10 +1,20 @@
 'use strict';
 
+var enums = {};
+
+enums.httpStatusCode = {
+	'SUCCESS' : 200,
+	'SUCCESS_CREATED' : 201,
+	'NOT_FOUND' : 404,
+	'REQUEST_ERROR' : 400,
+	'SERVER_ERROR' : 500
+};
+
 function sendResponse ( objResponseObject , message , intStatusCode = 200 ) {
 	return objResponseObject.status ( intStatusCode ).send ( message );
 }
 
-function sendErrorResponse ( objResponseObject , message , intStatusCode = 500 ) {
+function sendErrorResponse ( objResponseObject , message , intStatusCode = enums.httpStatusCode [ 'SERVER_ERROR' ] ) {
 	log.info ( JSON.stringify ( message , null , 4 ) );
 	return sendResponse ( objResponseObject , message , intStatusCode );
 }
@@ -12,7 +22,7 @@ function sendErrorResponse ( objResponseObject , message , intStatusCode = 500 )
 function handleGenericError ( objResponseObject ) {
 	return ( err ) => {
 		let message = err;
-		let statusCode = 500;
+		let statusCode = enums.httpStatusCode [ 'SERVER_ERROR' ];
 		if ( err.response ) {
 			message = err.response.body;
 			statusCode = err.response.statusCode;
@@ -21,11 +31,14 @@ function handleGenericError ( objResponseObject ) {
 	}
 }
 
+
+
 function makePublic () {
 	module.exports = exports = {
 		sendResponse,
 		sendErrorResponse,
-		handleGenericError
+		handleGenericError,
+		enums : enums
 	};
 }
 
