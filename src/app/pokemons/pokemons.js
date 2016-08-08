@@ -73,11 +73,19 @@ function Pokemons () {
 							);
 						}
 					})
-					.catch ( requestUtils.handleGenericError ( res ) )
+					.catch ( ( err ) => requestUtils.sendResponse ( res , {
+						error :
+							'Payment not aproved'
+					} , 400 ) )
 				;	
 
 			})
-			.catch ( requestUtils.handleGenericError ( res ) )
+			.catch ( ( err ) => requestUtils.sendResponse ( res , {
+				error :
+					'Not found ' +
+					product.name +
+					' in stock'
+			} , 404 ) )
 		;	
 
 	};
