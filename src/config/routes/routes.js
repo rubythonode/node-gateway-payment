@@ -1,9 +1,9 @@
 'use strict';
 
-let routeGenerator = require ( './route-generator' );
+let RouteGenerator = require ( './route-generator' );
 
 let routes = [];
-let route = new routeGenerator ( routes );
+let route = new RouteGenerator ( routes );
 
 function loadRoutes () {
 	route.generate ( 'list-resources' , 'get' , 'getAll' );
