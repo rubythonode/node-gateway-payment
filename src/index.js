@@ -39,7 +39,9 @@ let
 	// DataBase driver
 	dbDriver,
 	// DataBase connection
-	dbConnection
+	dbConnection,
+	// Security middleware solution
+	securityMiddleware
 ;
 
 const
@@ -66,6 +68,7 @@ function stepLoadNodeArguments () {
 function stepSetDependencies () {
 
 	express = require ( 'express' );
+	securityMiddleware = require ( 'helmet' );
 	HTTPBodyParser = require ( 'body-parser' );
 	dbDriver = require ( 'sequelize' );
 	global.dbDriver = dbDriver;
@@ -114,6 +117,9 @@ function stepSetDependencies () {
 function stepConfigServer () {
 
 	app = express ();
+
+	// Using Helmet: security
+	app.use ( securityMiddleware() );
 
 	// Allowing CORS for communication
 	app.use ( ( req , res , next ) => {
