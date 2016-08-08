@@ -89,7 +89,7 @@ npm test
 
 ## Estudo do código
 
-Seguir os comentários no arquivo pagarme/src/index.js
+Seguir os comentários no arquivo [pagarme/src/index.js](https://bitbucket.org/jotafeldmann/pagarme/src/d27d175efe8a858ce8c6af5a0b7b10482e27a75f/src/index.js?at=master&fileviewer=file-view-default)
 
 ## Licença
 
