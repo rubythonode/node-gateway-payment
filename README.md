@@ -8,6 +8,12 @@ Basicamente é um projeto bem simples, mas com o código completamente abandonad
 
 Não fique preso a apenas refatorar o código, altere o que achar necessário para deixar o projeto em um estado pronto para produção, então escolha querer evoluir o quanto quiser, mas cuidado apenas com over engineering.
 
+## Análise do desafio
+
+Sobre  over engineering: quando se trata de um teste com foco em produção, creio que a prioridade seja demonstrar o máximo de conhecimento, focando em conceitos como DRY, KISS, separação de contextos, modularização, legibilidade, para demonstrar tais recursos.
+
+A solução aqui proposta é um exemplo de scafolding que engloba conceitos de segurança, performance, escalabilidade e agilidade no desenvolvimento de novos recursos, bem como uso de wrappers para componentes.
+
 ## Instalação
 
 ### Instalação do Node.js 6.0.0 e do NPM
@@ -110,7 +116,7 @@ npm test
 
 ## Estudo do código
 
-Seguir os comentários no arquivo [pagarme/src/index.js](https://github.com/jotafeldmann/pagarme/blob/master/src/index.js)
+Após subir a aplicação, acessar [http://localhost:3000](http://localhost:3000) para verificar os recursos disponíveis.
 
 ## Licença
 
