@@ -21,14 +21,15 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Modularização das rotas (routes/routes.js) e dos recursos (/app/pokemons), ao invés de manter tudo isso atrelado;
 - Performance: conversão de [console.log (que afunila o processamento)](https://nodejs.org/api/console.html#console_asynchronous_vs_synchronous_consoles) para um chaveamento de logs em arquivo para produção ou console.log em dev, componente Bunyan
 - Uso de steps e init() para mostrar o passo-a-passo das funções (leia o código de baixo para cima)
-- Uso do pattern de composition para criação de objetos (return _public), mantendo o "new" para denotar instanciação de objetos;
-- Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc;
-- Promisses: ótimas para legibilidade, mas têm que se ter cuidado para tratativa de erros. Modifiquei os principais pontos em steps para legibilidade e melhor tratativa de erros;
-- Config.js: certas constantes de configuração (porta da API, nome, api_key, url de serviços) foram transferidos para um arquivo config/config.js, afim de evitar "chumbar" tais dados dentro da aplicação;
+- Uso do pattern de composition para criação de objetos (return _public), mantendo o "new" para denotar instanciação de objetos
+- Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc
+- Promisses: ótimas para legibilidade, mas têm que se ter cuidado para tratativa de erros. Modifiquei os principais pontos em steps para legibilidade e melhor tratativa de erros
+- Config.js: certas constantes de configuração (porta da API, nome, api_key, url de serviços) foram transferidos para um arquivo config/config.js, afim de evitar "chumbar" tais dados dentro da aplicação
 - API Pagar.me: foi criado um wrapper (common/pagarme). A API_KEY está em config/config.js.
-- Dados de mock do pagamento: ainda estão dentro do recurso pokemon;
-- Codificação literária: nomes de funções representam o que elas fazem. Ficam longas, mas evitam comentários;
-- Assinatura de funções e métodos possuem o tipo esperado (intQuantity, objResponse), baseado na [notação de código  húngara](https://en.wikipedia.org/wiki/Hungarian_notation);
+- Dados de mock do pagamento: ainda estão dentro do recurso pokemon
+- Codificação literária: nomes de funções representam o que elas fazem. Ficam longas, mas evitam comentários
+- Assinatura de funções e métodos possuem o tipo esperado (intQuantity, objResponse), baseado na [notação de código  húngara](https://en.wikipedia.org/wiki/Hungarian_notation)
+- Design patterns de Node.js [elementares](https://blog.risingstack.com/fundamental-node-js-design-patterns/) e [avançados](https://www.nodejsdesignpatterns.com/)
 - Uso de features disponíveis do [Node.js ES6](https://nodejs.org/dist/latest-v6.x/docs/api/)
 - Uso de debug com [node-inspector](https://github.com/node-inspector/node-inspector)
 - Performance sistêmica: [guia Node.js para profiling](https://nodejs.org/en/docs/guides/simple-profiling/)
