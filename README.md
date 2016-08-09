@@ -17,8 +17,21 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 ### O que foi alterado:
 
 - Rotas: para a listagem e criação, a rota é a mesma (/pokemons), mas com os verbos GET e PUT (idempotente) respectivamente. Para o processo de compra (/pokemons/buy) o recurso de compra (/buy) foi transformado num nível abaixo do recurso principal, ao contrário da original (/buy-pokemons);
-- Segurança: uso de Helmet;
-- Modularização das rotas (routes/routes.js) e dos recursos (/app/pokemons), ao invés de manter tudo isso atrelado.
+- Segurança: uso do middleware [Helmet](https://www.npmjs.com/package/helmet);
+- Modularização das rotas (routes/routes.js) e dos recursos (/app/pokemons), ao invés de manter tudo isso atrelado;
+- Performance: conversão de [console.log (que afunila o processamento)](https://nodejs.org/api/console.html#console_asynchronous_vs_synchronous_consoles) para um chaveamento de logs em arquivo para produção ou console.log em dev, componente Bunyan
+- Uso de steps e init() para mostrar o passo-a-passo das funções (leia o código de baixo para cima)
+- Uso do pattern de composition para criação de objetos (return _public), mantendo o "new" para denotar instanciação de objetos;
+- Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc.
+
+### Referências:
+
+- [REST API tutorial](http://www.restapitutorial.com/lessons/whatisrest.html)
+- [Projetando uma API REST - octo.com](http://blog.octo.com/pt-br/projetando-uma-api-rest/)
+- Express.js best practices: [security](https://expressjs.com/en/advanced/best-practice-security.html) and [performance](https://expressjs.com/en/advanced/best-practice-performance.html)
+- [Microservices pattern: Gateway](http://microservices.io/patterns/apigateway.html)
+- Consultas sobre performance na comunidade de [NodeBR](nodebr.slack.com), [Quora](https://www.quora.com/topic/Node-js) e [Reddit](https://www.reddit.com/r/node/)
+- Referências de grandes players com stacks de microserviço, realtime e performáticos: [Uber](https://eng.uber.com/), [Netflix](https://netflix.github.io/), [Spotify](https://labs.spotify.com)
 
 ## Instalação
 
