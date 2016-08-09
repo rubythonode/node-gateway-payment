@@ -27,6 +27,16 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Config.js: certas constantes de configuração (porta da API, nome, api_key, url de serviços) foram transferidos para um arquivo config/config.js, afim de evitar "chumbar" tais dados dentro da aplicação;
 - API Pagar.me: foi criado um wrapper (common/pagarme). A API_KEY está em config/config.js.
 - Dados de mock do pagamento: ainda estão dentro do recurso pokemon;
+- Codificação literária: nomes de funções representam o que elas fazem. Ficam longas, mas evitam comentários;
+- Assinatura de funções e métodos possuem o tipo esperado (intQuantity, objResponse), baseado na [notação de código  húngara](https://en.wikipedia.org/wiki/Hungarian_notation);
+- Uso de features disponíveis do [Node.js ES6](https://nodejs.org/dist/latest-v6.x/docs/api/)
+- Uso de debug com [node-inspector](https://github.com/node-inspector/node-inspector)
+- Performance sistêmica: [guia Node.js para profiling](https://nodejs.org/en/docs/guides/simple-profiling/)
+- Performance de I/O HTTP: uso de stress test com [siege](https://www.joedog.org/siege-manual/) -b -c100 -t 60S http://localhost:3000
+- Testes de API baseados em [testes funcionais da StrongLoop](https://strongloop.com/strongblog/nodejs-testing-documenting-apis-mocha-acquit/)
+- Integração contínua com [Travis.CI](https://travis-ci.org/jotafeldmann/pagarme)
+- Organização de pastas [baseada em comportamentos](http://stackoverflow.com/questions/5178334/folder-structure-for-a-node-js-project)
+- Uso do [NPM como ferramental de build, perfis, etc](https://www.digitalocean.com/community/tutorials/how-to-use-npm-to-build-and-publish-node-js-packages-on-a-linux-server)
 
 ### Referências:
 
@@ -37,6 +47,7 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Consultas sobre performance na comunidade de [NodeBR](nodebr.slack.com), [Quora](https://www.quora.com/topic/Node-js) e [Reddit](https://www.reddit.com/r/node/)
 - Referências de grandes players com stacks de microserviço, realtime e performáticos: [Uber](https://eng.uber.com/), [Netflix](https://netflix.github.io/), [Spotify](https://labs.spotify.com)
 - Promisses: [patterns](https://www.promisejs.org/) e [HowToNode](https://howtonode.org/promises)
+- Padrões de codificação idiomáticos [Node.js](https://nodejs.org/en/docs/guides/anatomy-of-an-http-transaction/) prevalecem sobre padrões [JS (Douglas Crockford)](http://javascript.crockford.com/code.html) e [Google](https://google.github.io/styleguide/javascriptguide.xml)
 
 ## Instalação
 
