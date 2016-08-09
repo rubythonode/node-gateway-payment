@@ -37,6 +37,8 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Integração contínua com [Travis.CI](https://travis-ci.org/jotafeldmann/pagarme)
 - Organização de pastas [baseada em comportamentos](http://stackoverflow.com/questions/5178334/folder-structure-for-a-node-js-project)
 - Uso do [NPM como ferramental de build, perfis, etc](https://www.digitalocean.com/community/tutorials/how-to-use-npm-to-build-and-publish-node-js-packages-on-a-linux-server)
+- Transformação do modelo de dados baseado em Sequelize.js para um arquivo separado, baseado em componentes de model. Podemos usar Sequelize, Mongoose, Bookshelf, ou até mesmo [Joi do Happi.js](https://github.com/hapijs/joi), apenas mudando o componente de factory de models
+- Autenticação: usaria [JWT (JSON Web Tokens) ](https://jwt.io/), [Passport.js](http://passportjs.org/), com o Redis ou MemCache
 
 ### Referências:
 
