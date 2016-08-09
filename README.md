@@ -14,6 +14,12 @@ Sobre  over engineering: quando se trata de um teste com foco em produção, cre
 
 A solução aqui proposta é um exemplo de scafolding que engloba conceitos de segurança, performance, escalabilidade e agilidade no desenvolvimento de novos recursos, bem como uso de wrappers para componentes.
 
+### O que foi alterado:
+
+- Rotas: para a listagem e criação, a rota é a mesma (/pokemons), mas com os verbos GET e PUT (idempotente) respectivamente. Para o processo de compra (/pokemons/buy) o recurso de compra (/buy) foi transformado num nível abaixo do recurso principal, ao contrário da original (/buy-pokemons);
+- Segurança: uso de Helmet;
+- Modularização das rotas (routes/routes.js) e dos recursos (/app/pokemons), ao invés de manter tudo isso atrelado.
+
 ## Instalação
 
 ### Instalação do Node.js 6.0.0 e do NPM
