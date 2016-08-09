@@ -23,7 +23,7 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Uso de steps e init() para mostrar o passo-a-passo das funções (leia o código de baixo para cima)
 - Uso do pattern de composition para criação de objetos (return _public), mantendo o "new" para denotar instanciação de objetos
 - Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc
-- Promisses: ótimas para legibilidade, mas têm que se ter cuidado para tratativa de erros. Modifiquei os principais pontos em steps para legibilidade e melhor tratativa de erros
+- Promisses: ótimas para legibilidade, mas têm que se ter [cuidado para tratativa de erros](http://www.2ality.com/2016/04/unhandled-rejections.html). Modifiquei os principais pontos em steps para legibilidade e melhor tratativa de erros
 - Config.js: certas constantes de configuração (porta da API, nome, api_key, url de serviços) foram transferidos para um arquivo config/config.js, afim de evitar "chumbar" tais dados dentro da aplicação
 - API Pagar.me: foi criado um wrapper (common/pagarme). A API_KEY está em config/config.js.
 - Dados de mock do pagamento: ainda estão dentro do recurso pokemon
