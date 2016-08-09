@@ -22,7 +22,11 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Performance: conversão de [console.log (que afunila o processamento)](https://nodejs.org/api/console.html#console_asynchronous_vs_synchronous_consoles) para um chaveamento de logs em arquivo para produção ou console.log em dev, componente Bunyan
 - Uso de steps e init() para mostrar o passo-a-passo das funções (leia o código de baixo para cima)
 - Uso do pattern de composition para criação de objetos (return _public), mantendo o "new" para denotar instanciação de objetos;
-- Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc.
+- Uso do [PM2](pm2.keymetrics.io): solução completa, open source e gratuita para monitoramento. Para DEV: recarregar alterações e acompanhamento de uso de recursos. Para PROD: uso de clusterização, recursos, API de healthcheck, escalonamento de instâncias, etc;
+- Promisses: ótimas para legibilidade, mas têm que se ter cuidado para tratativa de erros. Modifiquei os principais pontos em steps para legibilidade e melhor tratativa de erros;
+- Config.js: certas constantes de configuração (porta da API, nome, api_key, url de serviços) foram transferidos para um arquivo config/config.js, afim de evitar "chumbar" tais dados dentro da aplicação;
+- API Pagar.me: foi criado um wrapper (common/pagarme). A API_KEY está em config/config.js.
+- Dados de mock do pagamento: ainda estão dentro do recurso pokemon;
 
 ### Referências:
 
@@ -32,6 +36,7 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - [Microservices pattern: Gateway](http://microservices.io/patterns/apigateway.html)
 - Consultas sobre performance na comunidade de [NodeBR](nodebr.slack.com), [Quora](https://www.quora.com/topic/Node-js) e [Reddit](https://www.reddit.com/r/node/)
 - Referências de grandes players com stacks de microserviço, realtime e performáticos: [Uber](https://eng.uber.com/), [Netflix](https://netflix.github.io/), [Spotify](https://labs.spotify.com)
+- Promisses: [patterns](https://www.promisejs.org/) e [HowToNode](https://howtonode.org/promises)
 
 ## Instalação
 
