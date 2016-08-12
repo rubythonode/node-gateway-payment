@@ -1,6 +1,6 @@
 # App scafolding <img src="https://travis-ci.org/jotafeldmann/pagarme.svg">
 
-Este é o um exemplo de código para aplicação Node.js que eu, [Jorge Feldmann](https://github.com/jotafeldmann), baseado em refactoring de código para utilizar a [API](https://docs.pagar.me/) da Pagar.me
+Este é o exemplo de código que eu, [Jorge Feldmann](https://github.com/jotafeldmann), julgo o ideal para iniciar um projeto para aplicação Node.js. O código é baseado em refactoring de código para utilizar a [API](https://docs.pagar.me/) da Pagar.me
 
 ## Desafio
 
