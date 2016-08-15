@@ -1,4 +1,4 @@
-# App scafolding <img src="https://travis-ci.org/jotafeldmann/pagarme.svg">
+# App scafolding <img src="https://api.travis-ci.org/jotafeldmann/app-scaffolding.svg">
 
 Este é o exemplo de código que eu, [Jorge Feldmann](https://github.com/jotafeldmann), julgo o ideal para iniciar um projeto para aplicação Node.js. O código é baseado em refactoring de código para utilizar a [API](https://docs.pagar.me/) da Pagar.me
 
