@@ -80,7 +80,7 @@ pm2 -v
 
 ```bash
 git clone https://github.com/jotafeldmann/app-scaffolding
-cd pagarme/src
+cd app-scaffolding/src
 npm install
 ```
 
@@ -89,7 +89,7 @@ npm install
 Acessar a pasta com o código:
 
 ```bash
-cd pagarme/src
+cd app-scaffolding/src
 ```
 
 ### Iniciar a aplicação para PROD
@@ -98,7 +98,7 @@ Inicializa o PM2, com a aplicação como serviço, utilizando o máximo de núcl
 
 ```bash
 export NODE_ENV=production
-cd pagarme/src
+cd app-scaffolding/src
 npm start
 ```
 
@@ -127,7 +127,7 @@ npm run logs
 Acessar a pasta com os testes:
 
 ```bash
-cd pagarme/testes
+cd app-scaffolding/testes
 ```
 
 ### Instalação dos testes e dependências
@@ -149,7 +149,7 @@ npm install
 ### Iniciar os testes
 
 ```bash
-cd pagarme/src
+cd app-scaffolding/src
 npm test
 ```
 
