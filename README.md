@@ -79,7 +79,7 @@ pm2 -v
 ### Instalação do projeto
 
 ```bash
-git clone https://github.com/jotafeldmann/pagarme
+git clone https://github.com/jotafeldmann/app-scaffolding
 cd pagarme/src
 npm install
 ```
