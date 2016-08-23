@@ -1,17 +1,27 @@
 {
   "name": "app-scaffolding",
   "version": "1.0.0",
-  "description": "app-scaffolding",
+  "description": "App to play with geofences",
   "main": "index.js",
+  "config" : {
+    "app_log_name" : "app-scaffolding",
+    "app_address" : "http://localhost",
+    "app_port" : 3000,
+    "tests_path" : "../tests",
+    "docs_path" : "../docs"
+  },
   "scripts": {
-    "start" : "pm2 start -f -i 1 index.js --watch",
-    "test" : "cd ../testes/funcionais && npm start",
-    "stop" : "pm2 delete index",
-    "dev" : "pm2 start -f -i 1 --no-autorestart index.js --watch && pm2 logs index",
-    "log" : "pm2 logs index"
+    "start": "pm2 start -f -i max  $npm_package_main --watch --name=$npm_package_config_app_log_name -- name=$npm_package_config_app_log_name port=$npm_package_config_app_port ",
+    "stop": "pm2 delete $npm_package_config_app_log_name",
+    "dev": "pm2 start -f -i 1 --no-autorestart  $npm_package_main --watch --no-daemon --name=$npm_package_config_app_log_name -- name=$npm_package_config_app_log_name port=$npm_package_config_app_port",
+    "log": "pm2 logs $npm_package_config_app_log_name",
+    "preinstall" : "npm install -g pm2",
+    "postinstall" : "npm run test-install",
+    "test": "cd $npm_package_config_tests_path/functional && npm start -- --app_address=$npm_package_config_app_address:$npm_package_config_app_port",
+    "test-install" : "cd $npm_package_config_tests_path/functional && npm install"
   },
   "keywords": [
-    "app-scaffolding"
+    "app", "geofences"
   ],
   "author": "Jorge Feldmann",
   "license": "MIT",
@@ -26,7 +36,6 @@
     "sqlite3": "^3.1.4"
   },
   "engines": {
-    "node": "6.x",
-    "npm": "3.x"
+    "node": "6.0.x"
   }
 }
