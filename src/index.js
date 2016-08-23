@@ -49,6 +49,17 @@ const
 	dependenciesGetterPath = 'dependencies-getter/dependencies-getter'
 ;
 
+init ();
+
+function init () {
+	stepLoadNodeArguments ();
+	stepSetDependencies ();
+	stepConfigServer ();
+	stepConnectToMainDataBase ();
+	stepReadRoutes ();
+	stepStartServer ();
+}
+
 /**
  * stepLoadNodeArguments - Get and bind node application arguments
  */
@@ -144,6 +155,7 @@ function stepConnectToMainDataBase () {
 			dialect: 'sqlite'
 		})
 	;
+
 	global.dbConnection = dbConnection;
 }
 
@@ -183,24 +195,25 @@ function stepReadRoutes () {
  */
 function stepStartServer () {
 
-	app.listen ( port,  () => {
-		log.info ( 
-			'Instância ['
-			+ instanceName
-			+ '] disponível na porta ['
-			+ port
-			+ ']'
-		 );
-	});
-}
+	dbConnection
+		.authenticate ()
+		.then ( () => {
 
-function init () {
-	stepLoadNodeArguments ();
-	stepSetDependencies ();
-	stepConfigServer ();
-	stepConnectToMainDataBase ();
-	stepReadRoutes ();
-	stepStartServer ();
-}
+			return app.listen ( port , () => {
+				log.info (
+					'Instância ['
+					+ instanceName
+					+ '] disponível na porta ['
+					+ port
+					+ ']'
+				 );
+			});
 
-init ();
+		})
+		.catch ( ( err ) => {
+			throw Error ( err );
+		})
+	;
+
+	
+}
