@@ -1,4 +1,4 @@
 language: node_js
 node_js:
   - "6.0.0"
-script: cd src && npm install -g pm2 && npm install  && npm start && cd ../testes/funcionais && npm install -g mocha && npm install && npm start
+script: cd src && npm install -g pm2 && npm install  && npm start && cd ../tests/functional && npm install -g mocha && npm install && npm start
