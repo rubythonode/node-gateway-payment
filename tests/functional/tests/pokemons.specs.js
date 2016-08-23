@@ -9,7 +9,7 @@ let recurso = config.gerarRecurso ( 'pokemons' );
 let model = {
 	name : 'Pikachu',
 	price : utils.gerarNumero ( 2 ),
-	stock : 1
+	stock : 10
 };
 
 let buyModel = {
