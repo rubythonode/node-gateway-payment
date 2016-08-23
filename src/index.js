@@ -198,7 +198,7 @@ function init () {
 	stepLoadNodeArguments ();
 	stepSetDependencies ();
 	stepConfigServer ();
-	stepConnectToMainDataBase();
+	stepConnectToMainDataBase ();
 	stepReadRoutes ();
 	stepStartServer ();
 }
