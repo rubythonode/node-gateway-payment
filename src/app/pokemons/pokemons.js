@@ -10,7 +10,7 @@ function Pokemons () {
 
 	_public.getAll = ( req , res ) => {
 
-		model
+		return model
 			.findAll()
 			.then ( ( pokemons ) => requestUtils.sendResponse ( res , pokemons ) )
 			.catch ( requestUtils.handleGenericError ( res ) )
@@ -20,7 +20,7 @@ function Pokemons () {
 
 	_public.createOne = ( req , res ) => {
 
-		model
+		return model
 			.create ( req.body )
 			.then ( ( pokemons ) => requestUtils.sendResponse ( res , pokemons ) )
 			.catch ( requestUtils.handleGenericError ( res ) )
@@ -44,17 +44,19 @@ function Pokemons () {
 
 		function stepRemoveFromStock ( objResponse , objInstance , objResponseBody ) {
 			if ( pagarme.isApproved ( objResponseBody ) ) {
-				model
+				return model
 					.removeFromStock ( objInstance , product.quantity )
 					.then ( ( objInstance ) => requestUtils.sendResponse ( objResponse , objResponseBody ) )
 					.catch ( requestUtils.handleGenericError ( objResponse ) )
 				;
 			}
+			
+			return Promise.reject ( 'Pagamento não aprovado' ); 
 		}
 
 		function stepSendPaymentToPagarme ( objResponse , objInstance ) {
 
-			pagarme
+			return pagarme
 				.pay ({
 					product: model.name,
 					price : objInstance.price,
@@ -80,7 +82,7 @@ function Pokemons () {
 		}
 
 		function stepFindProduct () {
-			model
+			return model
 				.findOne( { where : { name: product.name } } )
 				.then ( ( pokemons ) => stepVerifyStock ( res , pokemons ) )
 				.catch ( ( err ) => requestUtils.sendResponse ( res , {
@@ -90,10 +92,10 @@ function Pokemons () {
 		}
 
 		function init () {
-			stepFindProduct();
+			return stepFindProduct();
 		}
 
-		init ();
+		return init ();
 
 	};
 
