@@ -79,8 +79,8 @@ pm2 -v
 ### Instalação do projeto
 
 ```bash
-git clone https://github.com/jotafeldmann/app-scaffolding
-cd app-scaffolding/src
+git clone https://github.com/jotafeldmann/node-gateway-payment
+cd node-gateway-payment/src
 npm install
 ```
 
@@ -89,7 +89,7 @@ npm install
 Acessar a pasta com o código:
 
 ```bash
-cd app-scaffolding/src
+cd node-gateway-payment/src
 ```
 
 ### Iniciar a aplicação para PROD
@@ -98,7 +98,7 @@ Inicializa o PM2, com a aplicação como serviço, utilizando o máximo de núcl
 
 ```bash
 export NODE_ENV=production
-cd app-scaffolding/src
+cd node-gateway-payment/src
 npm start
 ```
 
@@ -127,7 +127,7 @@ npm run logs
 Acessar a pasta com os testes:
 
 ```bash
-cd app-scaffolding/testes
+cd node-gateway-payment/testes
 ```
 
 ### Instalação dos testes e dependências
@@ -149,7 +149,7 @@ npm install
 ### Iniciar os testes
 
 ```bash
-cd app-scaffolding/src
+cd node-gateway-payment/src
 npm test
 ```
 
