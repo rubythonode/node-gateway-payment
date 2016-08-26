@@ -1,4 +1,4 @@
-# App scafolding [<img src="https://api.travis-ci.org/jotafeldmann/app-scaffolding.svg">](https://travis-ci.org/jotafeldmann/app-scaffolding)
+# App scafolding [<img src="https://api.travis-ci.org/jotafeldmann/node-gateway-payment.svg">](https://travis-ci.org/jotafeldmann/node-gateway-payment)
 
 Este é o exemplo de código que eu, [Jorge Feldmann](https://github.com/jotafeldmann), julgo o ideal para iniciar um projeto para aplicação Node.js. O código é baseado em refactoring de código para utilizar a [API](https://docs.pagar.me/) da Pagar.me
 
@@ -35,7 +35,7 @@ A solução aqui proposta é um exemplo de scafolding que engloba conceitos de s
 - Performance sistêmica: [guia Node.js para profiling](https://nodejs.org/en/docs/guides/simple-profiling/)
 - Performance de I/O HTTP: uso de stress test com [siege](https://www.joedog.org/siege-manual/) -b -c100 -t 60S http://localhost:3000
 - Testes de API baseados em [testes funcionais da StrongLoop](https://strongloop.com/strongblog/nodejs-testing-documenting-apis-mocha-acquit/)
-- Integração contínua com [Travis.CI](https://travis-ci.org/jotafeldmann/app-scaffolding)
+- Integração contínua com [Travis.CI](https://travis-ci.org/jotafeldmann/node-gateway-payment)
 - Organização de pastas [baseada em comportamentos](http://stackoverflow.com/questions/5178334/folder-structure-for-a-node-js-project)
 - Uso do [NPM como ferramental de build, perfis, etc](https://www.digitalocean.com/community/tutorials/how-to-use-npm-to-build-and-publish-node-js-packages-on-a-linux-server)
 - Transformação do modelo de dados baseado em Sequelize.js para um arquivo separado, baseado em componentes de model. Podemos usar Sequelize, Mongoose, Bookshelf, ou até mesmo [Joi do Happi.js](https://github.com/hapijs/joi), apenas mudando o componente de factory de models
